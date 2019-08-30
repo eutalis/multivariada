@@ -25,6 +25,23 @@ ks.test(hbat$x19,y=pnorm, mean=mean(hbat$x19), sd=sd(hbat$x19))
 shapiro.test(hbat$x19) #teste de normalidade para n's grandes
 
 install.packages("lmtest")
+library(lmtest)
 
+install.packages("olsrr")
+library(olsrr)
+install.packages("devtools")
+library(devtools)
+
+ols_test_breusch_pagan(model, rhs = TRUE, multiple = TRUE)
+
+#teste de homoscedasticidade
+
+## 
+##     Bartlett's Test of Homogenity of Variances    
+## ------------------------------------------------
+## Ho: Variances are equal across groups
+## Ha: Variances are unequal for atleast two groups
+
+summary(bptest(lm1))
 
 step(lm1,direction = "both")
